@@ -1,10 +1,13 @@
 # importa bibliotecas necessarias
 # Instalar o python GPIO antes da execucao: sudo apt-get install python-rpi.gpio
+# Instalar serial antes da execucao com: sudo apt-get install python-serial
+# Liberar porta serial com: sudo raspi-config
 import time
 import RPi.GPIO as GPIO
 import sys
 import pygame.camera
 import pygame.image
+import serial
 
 # inicializa camera
 pygame.camera.init()
@@ -45,8 +48,15 @@ def idRaspb():
 
 #Funcao que le o datastream do rf
 def readDataStream():
-    #funcao em branco por enquanto
-    return 0
+    ser = serial.Serial ("/dev/ttyAMA0")    #Abre a porta de nome xxx, Usando GPIO 14 e 15 como Rx/Tx 
+    ser.baudrate = 9600                     #Setar baud rate para 9600
+    dataBuff = ser.read(10)                     #Le 10 digitos do serial
+    ser.close()
+    #Talvez algumas manipulacoes sejam necessarias...
+    #.
+    #.
+    data = databuff
+    return data
 
 #definicao do seletor de comandos
 def seletorCmd(cmd):
@@ -83,6 +93,3 @@ def captureImg():
     
     #imprime o nome da imagem gerada para o log
     print("Saved image name: " + imgName)
-
-if (__name__ == '__main__'):
-
