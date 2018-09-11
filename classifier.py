@@ -1,14 +1,20 @@
 import os, sys
 import tensorflow as tf
 from sendInfo import *
+import EXIF
 
 
 def Classify(image_path):
-
+        
 	os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 	# change this as you see fit
 	#image_path = sys.argv[1]
+        
+        #Read image Timestamp
+        with open(image_path, 'rb') as fh:
+            tags = EXIF.process_file(fh, stop_tag="EXIF DateTimeOriginal")
+            timestamp = tags["EXIF DateTimeOriginal"]
 
 	# Read in the image_data
 	image_data = tf.gfile.FastGFile(image_path, 'rb').read()
@@ -37,4 +43,4 @@ def Classify(image_path):
 	    print("Image classified as: %s (score = %.5f)" % (action, score))
 
 	    # Send the highest scored action 
-	    ValidatePost(action, score)
+	    ValidatePost(action, score, timestamp)

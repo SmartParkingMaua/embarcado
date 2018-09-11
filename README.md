@@ -43,6 +43,10 @@ Use the following command to install GPIO dependencies:
 ```
 sudo apt-get install python-rpi.gpio
 ```
+## Installing EXIF
+    ```
+    $ pip install exifread
+    ```
 
 ### Cloning SD card image
 In case you want to clone SD card after everything has been installed, you can use the ``imageUSB`` program at: ``https://imageusb.br.uptodown.com/windows``
