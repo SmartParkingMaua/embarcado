@@ -45,7 +45,7 @@ sudo apt-get install python-rpi.gpio
 ```
 ## Installing EXIF
     ```
-    $ pip install exifread
+    $ pip3 install exifread
     ```
 
 ### Cloning SD card image
