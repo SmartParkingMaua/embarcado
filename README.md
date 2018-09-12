@@ -44,9 +44,9 @@ Use the following command to install GPIO dependencies:
 sudo apt-get install python-rpi.gpio
 ```
 ## Installing EXIF
-    ```
-    $ pip install exifread
-    ```
+```
+$ pip install exifread
+```
 
 ### Cloning SD card image
 In case you want to clone SD card after everything has been installed, you can use the ``imageUSB`` program at: ``https://imageusb.br.uptodown.com/windows``
@@ -55,9 +55,9 @@ If you have any doubts on how to use it, take a look on the following tutorial: 
 
 
 ### Cloning git repository
-Download the solution using the following command (I recommend cloning it into *HOME* folder):
+Download the solution using the following command (It is recommended to clone it into *HOME* folder):
 ```
-git clone "https://github.com/KaisenSan/SmartParkingMaua"
+git clone "https://github.com/SmartParkingMaua/embarcado.git"
 ```
 
 ### Running the solution

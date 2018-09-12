@@ -1,20 +1,19 @@
 # importa bibliotecas necessarias
 # Instalar o python GPIO antes da execucao: sudo apt-get install python-rpi.gpio
 # Instalar serial antes da execucao com: sudo apt-get install python-serial
-# Liberar porta serial com: sudo raspi-config
+# Liberar porta serial e a camera com: sudo raspi-config
 import time
 import RPi.GPIO as GPIO
 import sys
-import pygame.camera
-import pygame.image
 import serial
+from picamera import PiCamera
 
 # inicializa camera
-pygame.camera.init()
-cam = pygame.camera.Camera(pygame.camera.list_cameras()[0], (176,144))
-cam.start()
+camera = PiCamera()
 
-#Funcao que define o id do aparelho relacionado ao switch selector
+
+#Funcao que define o id do aparelho relacionado ao switch selector.
+#Pinos usados no DipSwitch [3,5,7,8,10,11,12] sendo 12 o MSB.
 def idRaspb():
     #Configura modo de entrada de pinos
     GPIO.setmode(GPIO.BOARD)
@@ -41,7 +40,7 @@ def idRaspb():
         
     #inverte a string para ficar correta
     output = output[::-1]
-    #Converte de string binaria pra int(pode mudar depdendo do resto das funcoes)
+    #Converte de string binaria pra int(pode mudar dependendo do resto das funcoes)
     output = int(output, 2)
     #retorna o id do aparelho em int
     return output
@@ -81,15 +80,15 @@ def captureImg():
     while(Find(imgName, imgPath) != None):
         imgCount+=1
         imgName = "img_" + str(imgCount) + ".jpg"
-    
-    #captura a imagem, e necessario rodar 3x por motivos tecnicos do momento
-    img = cam.get_image()
-    img = cam.get_image()
-    img = cam.get_image()
 
     # define o nome da imagem de acordo com o numero do contador e a salva localmente
     imgFullPath = imgPath + '/' + imgName
-    pygame.image.save(img, imgFullPath)
     
+    #Liga a camera e tira a foto (necessario pelo menos 2 s para acertar a dinamica da imagem)
+    camera.start_preview()
+    sleep(2)
+    camera.capture(imgFullPath)
+    camera.stop_preview()
+
     #imprime o nome da imagem gerada para o log
     print("Saved image name: " + imgName)
