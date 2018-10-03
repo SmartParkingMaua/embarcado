@@ -12,7 +12,7 @@ import spidev
 
 GPIO.setmode(GPIO.BCM)
 
-pipes = "0xE15BC8F482LL"
+pipes = 100
 
 radio = NRF24(GPIO, spidev.SpiDev())
 radio.begin(0, 22)
