@@ -12,7 +12,7 @@ import spidev
 
 GPIO.setmode(GPIO.BCM)
 
-pipes = 0xE15BC8F482LL
+pipe = 0xE15BC8F482LL
 
 radio = NRF24(GPIO, spidev.SpiDev())
 radio.begin(0, 22)
@@ -25,7 +25,7 @@ radio.setAutoAck(True)
 radio.enableDynamicPayloads()
 radio.enableAckPayload()
 
-radio.openReadingPipe(0, pipes[1])
+radio.openReadingPipe(0, pipe)
 radio.printDetails()
 
 radio.startListening()
