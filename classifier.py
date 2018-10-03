@@ -11,10 +11,10 @@ def Classify(image_path):
 	# change this as you see fit
 	#image_path = sys.argv[1]
         
-        #Read image Timestamp
-        with open(image_path, 'rb') as fh:
-            tags = EXIF.process_file(fh, stop_tag="EXIF DateTimeOriginal")
-            timestamp = tags["EXIF DateTimeOriginal"]
+	#Read image Timestamp
+	with open(image_path, 'rb') as fh:
+		tags = EXIF.process_file(fh, stop_tag="EXIF DateTimeOriginal")
+            	timestamp = tags["EXIF DateTimeOriginal"]
 
 	# Read in the image_data
 	image_data = tf.gfile.FastGFile(image_path, 'rb').read()
