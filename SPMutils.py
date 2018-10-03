@@ -54,7 +54,7 @@ def readDataStream():
     #Talvez algumas manipulacoes sejam necessarias...
     #.
     #.
-    data = databuff
+    data = dataBuff
     return data
 
 #definicao do seletor de comandos
