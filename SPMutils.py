@@ -10,13 +10,7 @@ from picamera import PiCamera
 import os
 from os.path import expanduser
 
-
-#inicializacao da camera
-def camInit():
-    camera = PiCamera()
-    #Abre o stream da camera (necessario pelo menos 2 s para acertar a dinamica da imagem)
-    camera.start_preview()
-    sleep(2)
+#Definicoes de variaveis
 
 #Define os pinos conectados ao dipswitch
 #Pinos usados no DipSwitch [3,5,7,8,10,11,12] sendo 12 o MSB.
@@ -28,6 +22,15 @@ imgPath = expanduser("~") + "/SmartParkingMaua/images"
 # cria diretorio onde as imagens serao salvas caso ele nao exista
 if not os.path.exists(imgPath):
     os.makedirs(imgPath)
+
+#Definicoes de funcoes
+
+#inicializacao da camera
+def camInit():
+    camera = PiCamera()
+    #Abre o stream da camera (necessario pelo menos 2 s para acertar a dinamica da imagem)
+    camera.start_preview()
+    sleep(2)
 
 # Programa que busca o arquivo no path desejado
 def Find(name, path):
