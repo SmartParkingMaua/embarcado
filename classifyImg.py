@@ -4,7 +4,7 @@ import os
 import tensorflow as tf
 from multiprocessing import Process
 from classifier import *
-from SPMutils import *
+from SPMutils import imgPath, Find
 
 
 def ClassifyImg():
