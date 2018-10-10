@@ -7,7 +7,7 @@ import RPi.GPIO as GPIO
 import sys
 import serial
 from picamera import PiCamera
-import os
+import osgi
 from os.path import expanduser
 
 
@@ -18,18 +18,25 @@ def camInit():
     camera.start_preview()
     sleep(2)
 
+#Define os pinos conectados ao dipswitch
+#Pinos usados no DipSwitch [3,5,7,8,10,11,12] sendo 12 o MSB.
+DipBus = [3,5,7,8,10,11,12]
+
 # define local onde salvar as imagens
 imgPath = expanduser("~") + "/SmartParkingMaua/images"
-
-#Define os pinos conectados ao dipswitch
-DipBus = [3,5,7,8,10,11,12]
 
 # cria diretorio onde as imagens serao salvas caso ele nao exista
 if not os.path.exists(imgPath):
     os.makedirs(imgPath)
 
+# Programa que busca o arquivo no path desejado
+def Find(name, path):
+    for root, dirs, files in os.walk(path):
+        if name in files:
+            return os.path.join(root, name)
+
+
 #Funcao que define o id do aparelho relacionado ao switch selector.
-#Pinos usados no DipSwitch [3,5,7,8,10,11,12] sendo 12 o MSB.
 def idRaspb():
     #Configura modo de entrada de pinos
     GPIO.setmode(GPIO.BOARD)
@@ -106,8 +113,4 @@ def captureImg():
     print("Saved image name: " + imgName)
 
 
-# Programa que busca o arquivo no path desejado
-def Find(name, path):
-    for root, dirs, files in os.walk(path):
-        if name in files:
-            return os.path.join(root, name)
+
