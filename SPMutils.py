@@ -7,7 +7,7 @@ import RPi.GPIO as GPIO
 import sys
 import serial
 from picamera import PiCamera
-import osgi
+#import osgi --NAO SEI O QUE E ISSO
 from os.path import expanduser
 
 
