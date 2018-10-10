@@ -1,7 +1,7 @@
 import os, sys
 import tensorflow as tf
 from sendInfo import *
-import EXIF
+import exifread
 
 
 def Classify(image_path):
@@ -13,7 +13,7 @@ def Classify(image_path):
         
 	#Read image Timestamp
     with open(image_path, 'rb') as fh:
-        tags = EXIF.process_file(fh, stop_tag="EXIF DateTimeOriginal")
+        tags = exifread.process_file(fh, stop_tag="EXIF DateTimeOriginal")
         timestamp = tags["EXIF DateTimeOriginal"]
 
 	# Read in the image_data
