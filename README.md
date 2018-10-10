@@ -29,11 +29,8 @@ sudo apt-get install vim
 ### Installing TensorFlow
 In order to install TensorFlow, run the following commands:
 ```
-sudo apt-get install python3-pip python3-dev
-wget https://github.com/samjabrahams/tensorflow-on-raspberry-pi/releases/download/v1.1.0/tensorflow-1.1.0-cp34-cp34m-linux_armv7l.whl
-sudo pip3 install tensorflow-1.1.0-cp34-cp34m-linux_armv7l.whl
-sudo pip3 uninstall mock
-sudo pip3 install mock
+sudo apt install libatlas-base-dev
+pip3 install tensorflow
 ```
 For further information, visit: ``https://github.com/samjabrahams/tensorflow-on-raspberry-pi``
 
@@ -43,9 +40,9 @@ Use the following command to install GPIO dependencies:
 ```
 sudo apt-get install python-rpi.gpio
 ```
-## Installing EXIF
+## Installing EXIFread
 ```
-$ pip install exifread
+$ pip3 install exifread
 ```
 
 ### Cloning SD card image
@@ -67,7 +64,8 @@ In order to run the solution, you will need a webcam supported by the ``pygame l
 
 Feel free to change the code in order to make it runnable with your ends.
 
-Having everything set up, go to ``SmartParkingMaua`` folder and execute the following commands in different terminals:
+Having everything set up, go to ``embarcado`` folder and execute the following commands in different terminals:
+
 ```
 python3 captureImg.py
 python3 classifyImg.py
