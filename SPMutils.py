@@ -7,21 +7,34 @@ import RPi.GPIO as GPIO
 import sys
 import serial
 from picamera import PiCamera
+from os.path import expanduser
 
-# inicializa camera
-camera = PiCamera()
 
+#inicializacao da camera
+def camInit():
+    camera = PiCamera()
+    #Abre o stream da camera (necessario pelo menos 2 s para acertar a dinamica da imagem)
+    camera.start_preview()
+    sleep(2)
+
+# define local onde salvar as imagens
+imgPath = expanduser("~") + "/SmartParkingMaua/images"
+
+#Define os pinos conectados ao dipswitch
+DipBus = [3,5,7,8,10,11,12]
+
+# cria diretorio onde as imagens serao salvas caso ele nao exista
+if not os.path.exists(imgPath):
+    os.makedirs(imgPath)
 
 #Funcao que define o id do aparelho relacionado ao switch selector.
 #Pinos usados no DipSwitch [3,5,7,8,10,11,12] sendo 12 o MSB.
 def idRaspb():
     #Configura modo de entrada de pinos
     GPIO.setmode(GPIO.BOARD)
-    #Pinos de entrada DIP Switch
-    pins = [3,5,7,8,10,11,12]
     
     #Seta Pinos como entrada c/ pull-up
-    for pin in pins:
+    for pin in DipBus:
         GPIO.setup(pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
     #Aguarda
     time.sleep(0.01)
@@ -31,7 +44,7 @@ def idRaspb():
     output = ''
     
     #Monta a string (invertida)
-    for pin in pins:
+    for pin in DipBus:
         if not GPIO.input(pin):
             output += '1' 
         else:
@@ -84,11 +97,16 @@ def captureImg():
     # define o nome da imagem de acordo com o numero do contador e a salva localmente
     imgFullPath = imgPath + '/' + imgName
     
-    #Liga a camera e tira a foto (necessario pelo menos 2 s para acertar a dinamica da imagem)
-    camera.start_preview()
-    sleep(2)
+    #Captura a imagem, e salva no path pré-estabelecido
     camera.capture(imgFullPath)
-    camera.stop_preview()
+
 
     #imprime o nome da imagem gerada para o log
     print("Saved image name: " + imgName)
+
+
+# Programa que busca o arquivo no path desejado
+def Find(name, path):
+    for root, dirs, files in os.walk(path):
+        if name in files:
+            return os.path.join(root, name)

@@ -4,7 +4,7 @@ import os
 import tensorflow as tf
 from multiprocessing import Process
 from classifier import *
-from commonFunctions import *
+import SPMutils
 
 
 def ClassifyImg():
