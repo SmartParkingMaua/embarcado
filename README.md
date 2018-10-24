@@ -45,6 +45,20 @@ sudo apt-get install python-rpi.gpio
 $ pip3 install exifread
 ```
 
+## Installing the radio utilities
+Activate spi and i2c in raspi-config
+```
+sudo apt-get update
+sudo apt-get install python-dev python-rpi.gpio
+git clone https://github.com/Gadgetoid/py-spidev.git
+cd py-spidev
+sudo python3 setup.py install
+cd ..
+git clone https://github.com/dquadros/pynrf24.git
+cd pynrf24
+sudo python3 setup.py install
+```
+
 ### Cloning SD card image
 In case you want to clone SD card after everything has been installed, you can use the ``imageUSB`` program at: ``https://imageusb.br.uptodown.com/windows``
 

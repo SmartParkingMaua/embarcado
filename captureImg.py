@@ -22,7 +22,7 @@ def CaptureImg():
     radio.openReadingPipe(1,addrRx)
     radio.startListening()
     radio.printDetails()
-    camInit()
+    camInit()       #camera initialization
 
     print ("Aguardando dados :")
 
@@ -32,7 +32,7 @@ def CaptureImg():
             if radio.available(pipe, False):
                 GPIO.output(5 , 1) # Led diag
                 print ("Recebido")
-                captureImg()
+                captureImg()        #take picture if trigger received
                 dado = []
                 radio.read(dado)
                 radio.stopListening()
