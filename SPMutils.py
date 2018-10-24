@@ -30,7 +30,7 @@ def camInit():
     camera = PiCamera()
     #Abre o stream da camera (necessario pelo menos 2 s para acertar a dinamica da imagem)
     camera.start_preview()
-    sleep(2)
+    time.sleep(2)
 
 # Programa que busca o arquivo no path desejado
 def Find(name, path):
