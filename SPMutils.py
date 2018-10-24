@@ -19,6 +19,9 @@ DipBus = [3,5,7,8,10,11,12]
 # define local onde salvar as imagens
 imgPath = expanduser("~") + "/SmartParkingMaua/images"
 
+#define a camera
+camera = PiCamera()
+
 # cria diretorio onde as imagens serao salvas caso ele nao exista
 if not os.path.exists(imgPath):
     os.makedirs(imgPath)
@@ -27,7 +30,6 @@ if not os.path.exists(imgPath):
 
 #inicializacao da camera
 def camInit():
-    camera = PiCamera()
     #Abre o stream da camera (necessario pelo menos 2 s para acertar a dinamica da imagem)
     camera.start_preview()
     time.sleep(2)
