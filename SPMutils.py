@@ -31,7 +31,7 @@ if not os.path.exists(imgPath):
 #inicializacao da camera
 def camInit():
     #Define a resolucao da imagem a ser capturada
-    camera.resolution = (1024, 768)
+    camera.resolution = (640, 480)
     #Abre o stream da camera (necessario pelo menos 2 s para acertar a dinamica da imagem)
     camera.start_preview()
     time.sleep(2)
