@@ -38,7 +38,7 @@ try:
 except KeyboardInterrupt:
     print("Finalizado")
     GPIO.output(5 , 0) # Led diag
-
+#Activate spi and i2c in raspi-config
 #sudo apt-get update
 #sudo apt-get install python-dev python-rpi.gpio
 #git clone https://github.com/Gadgetoid/py-spidev.git
