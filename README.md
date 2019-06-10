@@ -77,3 +77,37 @@ If you want to see the images being captured and deleted, check the ``SmartParki
 And that's it!
 
 In case you have any problems, improvements or tips, please let us know.
+
+# Placa
+
+Tutorial para configuração da placa
+
+## Importação da placa
+
+Acessar o site [https://www.instructables.com/id/Configure-Arduino-IDE-for-Atmega-328P-to-Use-8MHz-/](https://www.instructables.com/id/Configure-Arduino-IDE-for-Atmega-328P-to-Use-8MHz-/) e baixe o arquivo breadboard.zip, realize todos os passos para instalação da placa fornecido pelo site.
+
+## Gravação de Bootloader
+
+Esse processo só é necessário quando a placa não está com o bootloader correto(8MHz)
+
+Conecte o ATmega328 em uma interface de programação ou Arduino Uno conectado ao computador por cabo USB
+
+Abra o arquivo de exemplo ARDUINO ISP na IDE
+
+![ISP](https://user-images.githubusercontent.com/36850947/59170492-43d33500-8b15-11e9-99e1-3b373ba95507.png)
+
+Configurar Programador como "Arduino as ISP"
+
+Configurar Placa como "ATmega328 on a breadboard(8Mhz internal clock)"
+
+ambas na aba de Ferramentas
+
+![ferramentas](https://user-images.githubusercontent.com/36850947/59170550-9876b000-8b15-11e9-8dfa-1e8dde4c31cf.png)
+
+Selecione a opção "Gravar Bootloader" na aba Ferramentas
+
+![bootloader](https://user-images.githubusercontent.com/36850947/59170711-46825a00-8b16-11e9-9059-cec75a4f5af0.png)
+
+Agora a placa ja possui bootloader e pode ser programada revertendo a configuração de Programador: AVRISP mkll
+
+![programador](https://user-images.githubusercontent.com/36850947/59170809-a7119700-8b16-11e9-9036-eac7f1998156.png)
